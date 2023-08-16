@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   web:
     build:
@@ -7,13 +7,14 @@ services:
     ports:
       - "2000:2000"
     volumes:
-      - /home/node/app/node_modules
-      - .:/home/node/app
-  web-tests:
+      - /app/node_modules
+      - .:/app
+  tests:
+    stdin_open: true
     build:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - /home/node/app/node_modules
-      - .:/home/node/app
+      - /app/node_modules
+      - .:/app
     command: ["npm", "run", "test"]
